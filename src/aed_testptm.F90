@@ -224,7 +224,7 @@ SUBROUTINE aed_define_testptm(data, namlst)
    data%id_dop = aed_locate_variable('OGM_dop')
 
    ! Environment variables
-   data%id_larea = aed_locate_sheet_global('layer_area')
+   data%id_larea = aed_locate_global('layer_area')
    data%id_lht = aed_locate_global('layer_ht')
 
 END SUBROUTINE aed_define_testptm
@@ -292,7 +292,7 @@ SUBROUTINE aed_particle_bgc_testptm(data,column,layer_idx,ppid,p)
 
     ! Particle decay, changing with age
    thickness = _STATE_VAR_(data%id_lht)
-   area      = _STATE_VAR_S_(data%id_larea)
+   area      = _STATE_VAR_(data%id_larea)
 
    IF((partcl(PTM_AGE)-partcl(PTM_BIRTH))<buoyancy_age) THEN
      decay = partcl(PTM_MASS) * (DT*data%decay_rate_new)  ! g / timestep
